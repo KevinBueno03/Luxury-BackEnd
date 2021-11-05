@@ -1,6 +1,8 @@
 const express = require("express");
 const router = express.Router();
-const  ctrlProduct = require("../controllers/products");
+const ctrlProduct = require("../controllers/products");
+const ctrlCompanies = require("../controllers/Companies");
+const ctrlCategories = require("../controllers/Categories");
 
 
 //Clients
@@ -10,10 +12,11 @@ const  ctrlProduct = require("../controllers/products");
 
 
 //Administration
-router.post("/product",ctrlProduct.register);
-
+router.post("/product", ctrlProduct.register);
+router.post("/company", ctrlCompanies.register);
+router.post("/category", ctrlCategories.register);
 
 
 //OTHERS
 
-module.exports=router;
+module.exports = router;

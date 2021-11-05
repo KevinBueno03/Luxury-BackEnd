@@ -2,9 +2,9 @@ let mongoose = require("mongoose");
 
 
 var categorySchema = new mongoose.Schema({
-    name:{
-        type:String,
-        required:true,
+    name: {
+        type: String,
+        required: true,
     },
     companies: {
         type: Array
@@ -12,4 +12,4 @@ var categorySchema = new mongoose.Schema({
 
 })
 
-module.exports = mongoose.model("Company",categorySchema);
+module.exports = mongoose.model("Category", categorySchema);

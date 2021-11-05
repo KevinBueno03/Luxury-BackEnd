@@ -5,8 +5,7 @@ const mongoAtlasUri = `mongodb+srv://${process.env.MONGODB_USER}:${process.env.M
 try {
     // Connect to the MongoDB cluster
     mongoose.connect(
-        mongoAtlasUri,
-        { useNewUrlParser: true, useUnifiedTopology: true },
+        mongoAtlasUri, { useNewUrlParser: true, useUnifiedTopology: true },
         () => console.log(" Mongoose is connected")
     );
 } catch (e) {
@@ -16,5 +15,5 @@ try {
 module.exports = mongoose;
 ////
 require("./product");
-
-
+require("./company");
+require("./category");
