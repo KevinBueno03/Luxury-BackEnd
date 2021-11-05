@@ -10,7 +10,7 @@ const  ctrlProduct = require("../controllers/products");
 
 
 //Administration
-router.post("/new-product",ctrlProduct.register);
+router.post("/product",ctrlProduct.register);
 
 
 
