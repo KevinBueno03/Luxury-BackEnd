@@ -17,3 +17,4 @@ module.exports = mongoose;
 require("./product");
 require("./company");
 require("./category");
+require("./biker");
