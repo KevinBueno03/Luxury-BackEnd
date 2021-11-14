@@ -14,7 +14,10 @@ try {
 }
 
 module.exports = mongoose;
-////
-require("./product");
 
+////
+require("./buyers");
+require("./bikers");
+require("./admin");
+require("./product");
 

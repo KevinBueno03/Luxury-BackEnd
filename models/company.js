@@ -1,4 +1,6 @@
 let mongoose = require("mongoose");
+let validator = require("validator");
+
 
 
 var companySchema = new mongoose.Schema({
