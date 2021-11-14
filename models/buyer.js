@@ -1,7 +1,7 @@
 let mongoose = require("mongoose");
 let validator = require("validator");
 
-var userSchema = new mongoose.Schema({
+var buyerSchema = new mongoose.Schema({
     name: {
         type: String,
         required: true,
@@ -16,4 +16,4 @@ var userSchema = new mongoose.Schema({
     }
 });
 
-module.exports = mongoose.model("User", userSchema);
+module.exports = mongoose.model("Buyer", buyerSchema);

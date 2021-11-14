@@ -1,13 +1,14 @@
 var mongoose = require("mongoose");
-var User = mongoose.model("User");
+var Buyer = mongoose.model("Buyer");
 
 module.exports.register = (req, res) => {
 
-    var item = new User();
+    var item = new Buyer();
 
     if (item) {
         item.name = req.body.name;
-        item.companies = [];
+        item.email = req.body.email;
+        item.password = req.body.password;
     }
 
     item.save((err, doc) => {

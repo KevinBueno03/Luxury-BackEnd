@@ -7,7 +7,10 @@ module.exports.register = (req, res) => {
 
     if (item) {
         item.name = req.body.name;
-        item.companies = [];
+        item.email = req.body.email;
+        item.dni = req.body.dni;
+        item.phone = req.body.phone;
+        item.password = req.body.password;
     }
 
     item.save((err, doc) => {
