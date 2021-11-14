@@ -18,3 +18,4 @@ require("./product");
 require("./company");
 require("./category");
 require("./biker");
+require("./buyer");
