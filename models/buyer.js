@@ -1,20 +1,19 @@
 let mongoose = require("mongoose");
 let validator = require("validator");
 
-var productSchema = new mongoose.Schema({
+var buyerSchema = new mongoose.Schema({
     name: {
         type: String,
         required: true,
     },
-    description: {
+    email: {
         type: String,
         required: true,
     },
-    price: {
-        type: Number,
-        required: true,
+    password: {
+        type: String,
+        required: true
     }
-
 });
 
-module.exports = mongoose.model("Product", productSchema);
+module.exports = mongoose.model("Buyer", buyerSchema);
