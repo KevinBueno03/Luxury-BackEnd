@@ -14,10 +14,12 @@ var companySchema = new mongoose.Schema({
     },
     calification :{
         type: Number,
+        default:0
     },
-    products: {
-        type: Array
-    }
+    products:[{
+        type: mongoose.Schema.Types.ObjectId,
+        ref:'Product'
+    }]
 
 })
 

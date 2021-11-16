@@ -7,11 +7,13 @@ var categorySchema = new mongoose.Schema({
     name:{
         type:String,
         required:true,
+        unique:true
     },
-    companies: {
-        type: Array
-    }
+    companies:[{
+        type: mongoose.Schema.Types.ObjectId,
+        ref:'Company'
+    }]
 
 })
 
-module.exports = mongoose.model("Company",categorySchema);
+module.exports = mongoose.model("Category",categorySchema);

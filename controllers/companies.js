@@ -1,30 +1,28 @@
 var mongoose = require("mongoose");
-var Product = mongoose.model("Product");
 var Company = mongoose.model("Company");
-
+var Category= mongoose.model("Category");
 
 
 module.exports.register = async (req,res) => {
 
     try {
-    var item = new Product();
+    var item = new Company();
 
     if(item){
 
         item.name=req.body.name;
-        item.description = req.body.description;
-        item.price= req.body.price;
-       
+        item.description=req.body.description;
+        item.calificacion=req.body.calificacion;
         
     }
 
-    const idCompany= req.params.idCompany || req.headers["id-Company"];
+    const idCategory= req.params.idCategory || req.headers["id-Category"];
 
     await item.save();
 
-    const company = await Company.findById(idCompany)
-    company.products.push(item);
-    await company.save();
+    const category = await Category.findById(idCategory)
+    category.companies.push(item);
+    await category.save();
 
     res.status(200).json({success:true,item});
 

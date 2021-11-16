@@ -24,7 +24,7 @@ var bikerSchema = new mongoose.Schema({
     type: String,
     required: true
   },
-  phone_number: {
+  phone: {
     type: String,
     required: true,
     validate: {
@@ -34,7 +34,7 @@ var bikerSchema = new mongoose.Schema({
       message: 'Se requiere de 8 digitos'
     }
   },
-  hn_id: {
+  dni: {
     type: String,
     required: true,
     unique: true,
@@ -49,6 +49,7 @@ var bikerSchema = new mongoose.Schema({
     type: Boolean,
     default: false
   }
+  
 })
 
 bikerSchema.plugin(hashPassword)

@@ -20,4 +20,6 @@ require("./buyers");
 require("./bikers");
 require("./admin");
 require("./product");
+require("./category");
+require("./company");
 
