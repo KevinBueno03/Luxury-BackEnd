@@ -19,7 +19,7 @@ module.exports.login = (req, res) => {
     let email = req.body.email
     let password = req.body.password
         
-    if (email && pssword) {
+    if (email && password) {
         if (req.query.type == "bikers" || req.query.type == "buyer" || req.query.type == "admin") {
             var item = getUser(map[req.query.type], email);
             item.next((err, doc) => {
@@ -30,7 +30,7 @@ module.exports.login = (req, res) => {
                             if (err) res.send(err);
                             if (r) {
                                 res.status(200).send(
-                                    JSON.stringify({ session_code: doc.token })
+                                    JSON.stringify({ token: doc.token })
                                 );
                             } else {
                                 res.send("Wrong password");

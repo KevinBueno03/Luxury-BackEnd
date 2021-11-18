@@ -7,6 +7,8 @@ const  ctrlAdmin= require("../controllers/admin");
 const  ctrlCategory= require("../controllers/categories");
 const  ctrlCompany= require("../controllers/companies");
 const  verifyAccount= require("../controllers/verifyAccount");
+const  userLogin= require("../controllers/login")
+const  auth=require("../controllers/auth")
 
 
 //Clients
@@ -30,5 +32,7 @@ router.post("/company/:idCategory",ctrlCompany.register);
 
 //OTHERS
 router.get("/verifyaccount/:token", verifyAccount.verify);
+router.get("/auth",auth.verifyToken);
+router.post("/login",userLogin.login)
 
 module.exports=router;
