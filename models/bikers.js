@@ -48,8 +48,12 @@ var bikerSchema = new mongoose.Schema({
   active: {
     type: Boolean,
     default: false
-  }
-  
+  },
+  img: {
+    type: String,
+    required: false,
+  },
+
 })
 
 bikerSchema.plugin(hashPassword)

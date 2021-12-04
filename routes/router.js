@@ -12,8 +12,7 @@ const  auth=require("../controllers/auth")
 
 
 //Clients
-router.post("/register-buyer",ctrlBuyers.register)
-
+router.post("/register-buyer",ctrlBuyers.register);
 
 //BIKERS
 router.post("/register-biker",ctrlBikers.register);
@@ -23,12 +22,18 @@ router.post("/register-admin",ctrlAdmin.register);
 
 //Products
 router.post("/product/:idCompany",ctrlProduct.register);
+router.put("/product/:idProduct",ctrlProduct.register);
+router.delete("/product/:idProduct/category/:idCompany",ctrlProduct.delete);
 
 //Category
 router.post("/category",ctrlCategory.register);
+router.get("/category/:idCategory/companies",ctrlCategory.getCompanies);
+router.put("/category/:idCategory",ctrlCategory.update);
 
 //Company
 router.post("/company/:idCategory",ctrlCompany.register);
+router.get("/company/:idCompany/products",ctrlCompany.getProducts);
+router.put("/company/:idCompany",ctrlCompany.update);
 
 //OTHERS
 router.get("/verifyaccount/:token", verifyAccount.verify);

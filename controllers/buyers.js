@@ -29,8 +29,7 @@ module.exports.register = (req,res) => {
         } else {
             if (err) {
                 console.log(err);
-                r._err = true;
-                r.items = err.keyValue;
+               
                 res.send(err);
             }
         }

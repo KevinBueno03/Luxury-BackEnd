@@ -13,7 +13,12 @@ var productSchema = new mongoose.Schema({
     price: {
         type: Number,
         required: true,
-    }
+    },
+    img: {
+        type: String,
+        required: false,
+    },
+
 
 });
 

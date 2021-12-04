@@ -12,7 +12,12 @@ var categorySchema = new mongoose.Schema({
     companies:[{
         type: mongoose.Schema.Types.ObjectId,
         ref:'Company'
-    }]
+    }],
+    img: {
+        type: String,
+        required: false,
+    },
+
 
 })
 

@@ -19,7 +19,13 @@ var companySchema = new mongoose.Schema({
     products:[{
         type: mongoose.Schema.Types.ObjectId,
         ref:'Product'
-    }]
+    }],
+    img: {
+        type: String,
+        required: false,
+    },
+
+
 
 })
 
