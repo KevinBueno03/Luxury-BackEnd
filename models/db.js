@@ -22,4 +22,5 @@ require("./admin");
 require("./product");
 require("./category");
 require("./company");
+require("./orders")
 

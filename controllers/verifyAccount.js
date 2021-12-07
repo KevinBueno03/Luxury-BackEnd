@@ -6,6 +6,7 @@ var Biker = mongoose.model("Biker");
 var map = {
     buyer: Buyer,
     biker:Biker
+
 };
 
 function getUser(model, email) {

@@ -1,8 +1,14 @@
 var mongoose = require("mongoose");
 var bcrypt = require("bcryptjs");
+var jwt = require("jsonwebtoken");
+
+var path = require("path");
+
+
 var Bikers = mongoose.model("Biker");
 var Buyers = mongoose.model("Buyer");
 var Admin = mongoose.model("Admin");
+
 
 var map = {
     bikers:Bikers,

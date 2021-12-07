@@ -2,8 +2,6 @@ var mongoose = require("mongoose");
 var Product = mongoose.model("Product");
 var Company = mongoose.model("Company");
 
-
-
 module.exports.register = async (req,res) => {
 
     try {
@@ -76,22 +74,18 @@ module.exports.delete = async (req,res) => {
 
     try {
     
-
     const idCompany= req.params.idCompany || req.headers["id-Company"];
 
     await Product.findOneAndRemove({_id:req.params.idProduct});
 
-    
-    const company = await Company.findById(idCompany)
+    const company = await Company.findById(idCompany);
     company.products.pull(req.params.idProduct);
     await company.save();
 
     res.status(200).json({success:true,idCompany});
 
-
     } catch(err){
         res.status(400).json({success:false,message:err.message});
-    }
-
-    
+    }    
 }
+

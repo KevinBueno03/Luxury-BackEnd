@@ -24,6 +24,10 @@ var companySchema = new mongoose.Schema({
         type: String,
         required: false,
     },
+    active:{
+        type:Boolean,
+        default:true
+    }
 
 
 

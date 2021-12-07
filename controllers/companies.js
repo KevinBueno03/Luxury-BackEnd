@@ -4,7 +4,6 @@ var Category= mongoose.model("Category");
 var Product= mongoose.model("Product");
 
 
-
 module.exports.register = async (req,res) => {
 
     try {
@@ -40,7 +39,7 @@ module.exports.getProducts = async (req,res) =>{
 
     Company.aggregate(
         [
-            { $match : { _id :mongoose.Types.ObjectId(req.params.idCompany)  } },
+            { $match : { _id :mongoose.Types.ObjectId(req.params.idCompany) } },
             {
                 $lookup:
                    {
@@ -49,7 +48,58 @@ module.exports.getProducts = async (req,res) =>{
                       foreignField: '_id',
                       as: 'products'
                    }
-             }
+             },
+             {
+                $project:
+                {
+                    _id:1,
+                    products:1,
+                    
+                    
+                }
+
+
+
+            }
+             
+        ]
+    ).then((data) => {
+        res.send(data[0]);
+    })
+    .catch((err) => {
+        res.status(500).send({
+            message:
+                err.message ||
+                "Some error occurred while retrieving patients.",
+        });
+    });
+    
+}
+
+//aun pensando si es necesario 
+module.exports.getProductsActive = async (req,res) =>{
+
+    Company.aggregate(
+        [
+            { $match : { _id :mongoose.Types.ObjectId(req.params.idCompany),"products.active":true } },
+            {
+                $lookup:
+                   {
+                      from: 'products',
+                      localField:'products',
+                      foreignField: '_id',
+                      as: 'products'
+                   }
+             },
+            {
+                $project:
+                {
+                    _id:1,
+                    products:1,
+                    "products.$":true
+                }
+
+            }
         ]
     ).then((data) => {
         res.send(data[0]);

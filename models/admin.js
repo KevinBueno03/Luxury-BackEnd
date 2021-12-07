@@ -1,7 +1,7 @@
 let mongoose = require("mongoose");
 let validator = require("validator");
 let hashPassword= require("./plugins/hashPassword");
-
+let verificationToken= require("./plugins/verificationEmail");
 var adminSchema = mongoose.Schema({
     email:{
         type:String,
@@ -27,5 +27,6 @@ var adminSchema = mongoose.Schema({
 });
 
 adminSchema.plugin(hashPassword);
+adminSchema.plugin(verificationToken);
 
 module.exports = mongoose.model('Admin',adminSchema);

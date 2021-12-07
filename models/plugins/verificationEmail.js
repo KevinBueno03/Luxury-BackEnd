@@ -1,5 +1,8 @@
 var jwt = require("jsonwebtoken");
 var nodemailer = require("nodemailer");
+var mongoose = require("mongoose")
+
+
 
 const transport = nodemailer.createTransport({
     service: "Gmail",

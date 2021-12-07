@@ -35,3 +35,86 @@ module.exports.register = (req,res) =>{
         }
     });
 }
+
+module.exports.update =  async (req, res) => {
+    if (!req.body) {
+        return res.status(400).send({
+            message: "Data to update can not be empty!",
+        });
+    }
+
+    Biker.findOneAndUpdate(
+        { _id: mongoose.Types.ObjectId(req.params.idBiker)},
+        {
+            $set: {
+              name:req.body.name,
+              password:req.body.password,
+              phone:req.body.phone,
+              img:req.body.img,
+              accepted:req.body.accepted
+            },
+        },
+
+        { returnOriginal: false }
+    )
+        .then((data) => {
+            if (!data) {
+                res.status(404).send({
+                    message: `Cannot update Biker with id=${req.params.idBiker}. Maybe Biker was not found!`,
+                });
+            } else res.send({ message: "Dato actualizado exitosamente" });
+        })
+        .catch((err) => {
+            console.log(err);
+            res.status(500).send({
+                message: "Error updating  Biker with id=" + req.params.idBiker,
+            });
+        });
+};
+
+
+module.exports.findOneByToken = async (req, res) => {
+    //const code = req.params.code;
+    const code = req.body.token;
+
+    Biker.findOne({ token: code })
+        .then((data) => {
+            if (!data)
+                res.status(404).send({
+                    message: "Not found biker with code " + code,
+                });
+            else res.send(data);
+        })
+        .catch((err) => {
+            res.status(500).send({
+                message: "Error retrieving biker with code=" + code,
+            });
+        });
+};
+
+module.exports.findAllActiveAndAccepted = async (req, res) => {
+    Biker.find({ active: true, accepted: true })
+        .then((data) => {
+            res.send(data);
+        })
+        .catch((err) => {
+            res.status(500).send({
+                message:
+                    err.message ||
+                    "Some error occurred while retrieving Bikers.",
+            });
+        });
+};
+module.exports.findAllActive= async (req, res) => {
+    Biker.find({ active: true })
+        .then((data) => {
+            res.send(data);
+        })
+        .catch((err) => {
+            res.status(500).send({
+                message:
+                    err.message ||
+                    "Some error occurred while retrieving Bikers.",
+            });
+        });
+};

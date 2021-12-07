@@ -34,6 +34,20 @@ module.exports.register = (req,res) => {
     
 }
 
+module.exports.getCategories = async (req,res) => {
+    category.find({},{companies:false}).
+    then((data) => {
+        res.send(data);
+    })
+    .catch((err) => {
+        res.status(500).send({
+            message:
+                err.message ||
+                "Some error occurred while retrieving doctors.",
+        });
+    });
+
+}
 
 module.exports.getCompanies = async (req,res) =>{
 
@@ -63,9 +77,7 @@ module.exports.getCompanies = async (req,res) =>{
     
 }
 
-
-
-//aun no funciona 
+//obtener todas las companias y sus productos por company
 module.exports.getCompaniesAndProducts = async (req,res) =>{
 
     category.aggregate(
@@ -80,10 +92,25 @@ module.exports.getCompaniesAndProducts = async (req,res) =>{
                       as:'companies'
                    }
              },
+             {
+                $unwind:'$companies'
+             },
+
+            {$lookup:
+                {
+                    from:'products',
+                    localField:'companies.products',
+                    foreignField:'_id',
+                    as:'companies.products' 
+                }
+            }
+             
+             
+
             
         ]
     ).then((data) => {
-        res.send(data[0]);
+        res.send(data);
     })
     .catch((err) => {
         res.status(500).send({
