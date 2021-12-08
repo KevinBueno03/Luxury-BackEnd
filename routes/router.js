@@ -35,13 +35,15 @@ router.post("/company/:idCategory",ctrlCompany.register);
 router.get("/company/:idCompany/products",ctrlCompany.getProducts);
 router.put("/company/:idCompany",ctrlCompany.update);
 //Products
-router.post("/product/:idCompany",ctrlProduct.register);
-router.put("/product/:idProduct",ctrlProduct.register);
-router.delete("/product/:idProduct/category/:idCompany",ctrlProduct.delete);
+router.post("/product/company/:idCompany",ctrlProduct.register);
+router.put("/product/:idProduct",ctrlProduct.update);
+router.delete("/product/:idProduct/company/:idCompany",ctrlProduct.delete);
 
 //orders
 router.post("/order/:idBuyer",ctrlOrder.register);
-router.post("/order/products/:idOrder",ctrlOrder.addProduct2Order);
+router.post("/order/:idOrder/product-add",ctrlOrder.addProduct2Order);
+router.post("/order/:idOrder/product-subtract",ctrlOrder.subtractProduct2Order);
+router.post("/order/:idOrder/product-remove",ctrlOrder.removeProduct2Order);
 router.put("/order/:idOrder",ctrlOrder.update);
 router.get("/orders/buyer/:idBuyer",ctrlOrder.findAllOrdersBuyer);
 router.get("/orders/biker/:idBiker",ctrlOrder.findAllOrdersBiker);

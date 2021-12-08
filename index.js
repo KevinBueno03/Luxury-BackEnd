@@ -11,6 +11,8 @@ var app = express();
 app.use(express.urlencoded());
 app.use(express.json());
 
+//
+
 //CORS
 app.use(
     cors({
@@ -20,8 +22,22 @@ app.use(
         credentials: true,
     })
 );
+
 //routers
 app.use("/api", rtsIndex); // api endpoint
+app.use((req, res, next) => {
+
+    // Dominio que tengan acceso (ej. 'http://example.com')
+       res.setHeader('Access-Control-Allow-Origin', '*');
+    
+    // Metodos de solicitud que deseas permitir
+       res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
+    
+    // Encabecedados que permites (ej. 'X-Requested-With,content-type')
+       res.setHeader('Access-Control-Allow-Headers', '*');
+    
+    next();
+    })
 
 //server
 app.listen(process.env.PORT , function () {
