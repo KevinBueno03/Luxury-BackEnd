@@ -167,8 +167,9 @@ module.exports.findAllOrdersBuyer = async (req, res) => {
 			})
 		})
 }
+
 module.exports.findAllOrdersBiker = async (req, res) => {
-	Order.find({ idBiker: req.params.idBuyer })
+	Order.find({ idBiker: req.params.idBiker })
 		.then((data) => {
 			res.send(data)
 		})

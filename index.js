@@ -14,6 +14,7 @@ app.use(express.json());
 //
 
 //CORS
+/*
 app.use(
     cors({
         origin: [`http://${process.env.IPADMIN}:${process.env.PORTADMIN}`,//APP ADMINISTRADOR
@@ -22,7 +23,8 @@ app.use(
         credentials: true,
     })
 );
-
+*/
+app.use(cors());
 //routers
 app.use("/api", rtsIndex); // api endpoint
 app.use((req, res, next) => {
