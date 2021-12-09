@@ -40,13 +40,19 @@ router.put("/product/:idProduct",ctrlProduct.update);
 router.delete("/product/:idProduct/company/:idCompany",ctrlProduct.delete);
 
 //orders
-router.post("/order/:idBuyer",ctrlOrder.register);
-router.post("/order/:idOrder/product-add",ctrlOrder.addProduct2Order);
-router.post("/order/:idOrder/product-subtract",ctrlOrder.subtractProduct2Order);
-router.post("/order/:idOrder/product-remove",ctrlOrder.removeProduct2Order);
-router.put("/order/:idOrder",ctrlOrder.update);
+router.post("/orders/order/buyer/:idBuyer",ctrlOrder.register);
+router.post("/orders/order/:idOrder/product-add",ctrlOrder.addProduct2Order);
+router.post("/orders/order/:idOrder/product-subtract",ctrlOrder.subtractProduct2Order);
+router.post("/orders/order/:idOrder/product-remove",ctrlOrder.removeProduct2Order);
+router.put("/orders/order/:idOrder",ctrlOrder.update);
 router.get("/orders/buyer/:idBuyer",ctrlOrder.findAllOrdersBuyer);
 router.get("/orders/biker/:idBiker",ctrlOrder.findAllOrdersBiker);
+router.get("/orders",ctrlOrder.getAllOrder);
+router.get("/orders/order/:idOrder",ctrlOrder.getOrderById);
+router.get("/orders/paid",ctrlOrder.getAllOrdersPaid);
+router.get("/orders/not-paid",ctrlOrder.getOrdersNotPaid);
+router.get("/orders/order/not-paid/buyer/:idBuyer",ctrlOrder.getOrderNotPaidBuyer);
+router.get("/orders/paid/buyer/:idBuyer",ctrlOrder.getOrdersPaidBuyer);
 
 
 //OTHERS

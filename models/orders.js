@@ -26,7 +26,7 @@ var orderSchema = new mongoose.Schema({
 	},
 	commission: {
 		type: Number,
-		default: 0,
+		default: 65,
 	},
 	total: {
 		type: Number,
