@@ -69,6 +69,7 @@ var orderSchema = new mongoose.Schema({
 	},
     location:{
         type:mongoose.Schema.Types.Mixed
-    }
+    },
+	
 })
 module.exports = mongoose.model('Order', orderSchema)

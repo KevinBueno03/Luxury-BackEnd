@@ -16,6 +16,7 @@ router.post("/register-admin",ctrlAdmin.register);
 //Clients
 router.post("/register-buyer",ctrlBuyers.register);
 router.put("/buyer/:idBuyer",ctrlBuyers.update);
+router.get("/buyers/buyer",ctrlBuyers.findOneByToken);
 
 //BIKERS
 router.post("/register-biker",ctrlBikers.register);

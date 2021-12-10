@@ -74,9 +74,9 @@ module.exports.update =  async (req, res) => {
 
 module.exports.findOneByToken = async (req, res) => {
     //const code = req.params.code;
-    const code = req.body.token;
+    var code = req.body.token;
 
-    Buyer.findOne({ token: code })
+    Buyer.findOne({token:req.body.token})
         .then((data) => {
             if (!data)
                 res.status(404).send({
