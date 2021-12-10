@@ -15,7 +15,7 @@ const  auth=require("../controllers/auth");
 router.post("/register-admin",ctrlAdmin.register);
 //Clients
 router.post("/register-buyer",ctrlBuyers.register);
-router.put("/buyer/:idBuyer",ctrlBuyers.update);
+router.put("/buyers/buyer/:idBuyer",ctrlBuyers.update);
 router.get("/buyers/buyer",ctrlBuyers.findOneByToken);
 
 //BIKERS
@@ -32,7 +32,7 @@ router.get("/category/:idCategory/companies",ctrlCategory.getCompanies);
 router.get("/category/:idCategory/companies-products",ctrlCategory.getCompaniesAndProducts);
 router.put("/category/:idCategory",ctrlCategory.update);
 //Company
-router.post("/company/:idCategory",ctrlCompany.register);
+router.post("/company/category/:idCategory",ctrlCompany.register);
 router.get("/company/:idCompany/products",ctrlCompany.getProducts);
 router.put("/company/:idCompany",ctrlCompany.update);
 //Products
