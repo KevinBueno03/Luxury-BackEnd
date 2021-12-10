@@ -28,6 +28,14 @@ var orderSchema = new mongoose.Schema({
 		type: Number,
 		default: 65,
 	},
+	commissionAdmin: {
+		type: Number,
+		default: 15,
+	},
+	commissionBiker: {
+		type: Number,
+		default: 45,
+	},
 	total: {
 		type: Number,
 		default: 0,

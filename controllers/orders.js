@@ -183,7 +183,7 @@ module.exports.findAllOrdersBiker = async (req, res) => {
 module.exports.addProduct2Order = async (req, res) => {
 	try {
 		const idOrder = mongoose.Types.ObjectId(req.params.idOrder)
-		const product2Add = req.body.product
+		const product2Add = req.body.product;
 		var actualOrder = await Order.findById(idOrder)
 		var productsActualOrder = actualOrder.products
 		var idProduct2Add = product2Add.idProduct
@@ -210,7 +210,8 @@ module.exports.addProduct2Order = async (req, res) => {
 					subtotal:acSubtotal,
 					isv:acisv,
 					total:actotal,
-					amountProducts:newAmountProductsOrder
+					amountProducts:newAmountProductsOrder,
+					
 					
 					},
 				},
@@ -240,8 +241,10 @@ module.exports.addProduct2Order = async (req, res) => {
 			};
 
 			if (theSame.length > 0) {
+
 				const newAmount= theSame[0].amount + 1;
-				var amount2Add =product2Add.price*product2Add.amount;
+				const newTotalPrice = theSame[0].totalPrice + (product2Add.price*product2Add.amount);
+				var amount2Add = product2Add.price*product2Add.amount;
 				var acSubtotal= actualOrder.subtotal +amount2Add;
 				var acisv=acSubtotal*.15;
 				var actotal=acSubtotal+actualOrder.commission+acisv;
@@ -253,6 +256,7 @@ module.exports.addProduct2Order = async (req, res) => {
 						{
 							$set: {
 							"products.$.amount":newAmount,
+							"products.$.totalPrice":newTotalPrice,
 							subtotal:acSubtotal,
 							isv:acisv,
 							total:actotal,
@@ -312,6 +316,7 @@ module.exports.subtractProduct2Order = async (req, res) => {
 
 			if (theSame.length > 0) {
 				const newAmount= theSame[0].amount - 1;
+				const newTotalPrice = theSame[0].totalPrice - (product2Add.price*product2Add.amount);
 				var amount2Add =product2Add.price*product2Add.amount;
 				var acSubtotal= actualOrder.subtotal -amount2Add;
 				var acisv=acSubtotal*.15;
@@ -326,6 +331,7 @@ module.exports.subtractProduct2Order = async (req, res) => {
 							{
 								$set: {
 								"products.$.amount":newAmount,
+								"products.$.totalPrice":newTotalPrice,
 								subtotal:acSubtotal,
 								isv:acisv,
 								total:actotal,
@@ -369,7 +375,7 @@ module.exports.subtractProduct2Order = async (req, res) => {
 module.exports.removeProduct2Order = async (req, res) => {
 
 	const idOrder = mongoose.Types.ObjectId(req.params.idOrder)
-	const product2Add = req.body.product
+
 	const actualProductOrder = await Order.findOne({
 		_id:idOrder,
 		"products.idProduct":req.body.product.idProduct
@@ -385,10 +391,9 @@ module.exports.removeProduct2Order = async (req, res) => {
 	var actotal=acSubtotal+actualProductOrder.commission+acisv;
 	var newAmountProductsOrder=actualProductOrder.amountProducts -product.amount;
 
-	//console.log("amount2Add",amount2Add,"newAmountpro",newAmountProductsOrder);
+	console.log("amount2Add",amount2remove,"newAmountpro",newAmountProductsOrder);
 
-	Order
-	.updateOne(
+	await Order.updateOne(
 		{
 			_id: mongoose.Types.ObjectId(req.params.idOrder),
 		},
@@ -397,8 +402,26 @@ module.exports.removeProduct2Order = async (req, res) => {
 			$pull: {
 				products:{idProduct: req.body.product.idProduct}
 			},
-		},
+			
+		},	
+		
 
+	)
+	.then((result) => {
+		res.send(result);
+		res.end();
+	})
+	.catch((error) => {
+		res.send(error);
+		res.end();
+	});
+
+	await Order.updateOne(
+		{
+			_id: mongoose.Types.ObjectId(req.params.idOrder),
+		},
+		
+		
 		{
 			$set: {
 				subtotal:acSubtotal,
@@ -406,7 +429,7 @@ module.exports.removeProduct2Order = async (req, res) => {
 				total:actotal,
 				amountProducts:newAmountProductsOrder
 			},
-		},
+		}
 
 	)
 	.then((result) => {
