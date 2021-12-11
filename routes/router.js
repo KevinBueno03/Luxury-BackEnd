@@ -34,6 +34,7 @@ router.put("/category/:idCategory",ctrlCategory.update);
 //Company
 router.post("/company/category/:idCategory",ctrlCompany.register);
 router.get("/company/:idCompany/products",ctrlCompany.getProducts);
+router.get("/companies/company/:idCompany",ctrlCompany.findOneById);
 router.put("/company/:idCompany",ctrlCompany.update);
 //Products
 router.post("/product/company/:idCompany",ctrlProduct.register);

@@ -9,7 +9,9 @@ const rtsIndex = require("./routes/router");
 //middleware
 var app = express();
 app.use(express.urlencoded());
-app.use(express.json());
+app.use(express.json({ limit: '10MB' }));
+
+
 
 //
 

@@ -24,9 +24,17 @@ var companySchema = new mongoose.Schema({
         type: String,
         required: false,
     },
+    logo: {
+        type: String,
+        required: false,
+    },
     active:{
         type:Boolean,
         default:true
+    },
+    address:{
+        type:String,
+        required:true,
     }
 
 

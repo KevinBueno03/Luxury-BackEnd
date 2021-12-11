@@ -11,14 +11,14 @@ var Admin = mongoose.model("Admin");
 
 
 var map = {
-    bikers:Bikers,
-    buyers:Buyers ,
+    biker:Bikers,
+    buyer:Buyers ,
     admin :Admin,
     
 };
 
 function getUser(model, e) {
-    return model.findOne({ email: e }).cursor();
+    return model.findOne({email:e}).cursor();
 }
 
 module.exports.login = (req, res) => {

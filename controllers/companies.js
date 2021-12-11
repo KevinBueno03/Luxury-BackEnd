@@ -13,7 +13,9 @@ module.exports.register = async (req,res) => {
 
         item.name=req.body.name;
         item.description=req.body.description;
-        item.calificacion=req.body.calificacion;
+        item.logo= req.body.logo,
+        item.img = req.body.img,
+        item.address= req.body.address
         
     }
 
@@ -35,6 +37,24 @@ module.exports.register = async (req,res) => {
     
 }
 
+module.exports.findOneById = async (req, res) => {
+    //const code = req.params.code;
+    
+
+    Company.findById(mongoose.Types.ObjectId(req.params.idCompany),{products:0,img:0})
+        .then((data) => {
+            if (!data)
+                res.status(404).send({
+                    message: "Not found Buyer with code " + code,
+                });
+            else res.send(data);
+        })
+        .catch((err) => {
+            res.status(500).send({
+                message: "Error retrieving Buyer with code=" + code,
+            });
+        });
+};
 module.exports.getProducts = async (req,res) =>{
 
     Company.aggregate(
@@ -54,12 +74,10 @@ module.exports.getProducts = async (req,res) =>{
                 {
                     _id:1,
                     products:1,
+                    name:1
                     
                     
                 }
-
-
-
             }
              
         ]
@@ -75,6 +93,7 @@ module.exports.getProducts = async (req,res) =>{
     });
     
 }
+
 
 //aun pensando si es necesario 
 module.exports.getProductsActive = async (req,res) =>{
@@ -129,6 +148,8 @@ module.exports.update = async (req, res) => {
               description:req.body.description,
               calification:req.body.calification,
               img:req.body.img,
+              logo:req.body.logo,
+              address:req.body.address
               
             },
         },
