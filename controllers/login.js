@@ -26,7 +26,7 @@ module.exports.login = (req, res) => {
     let password = req.body.password
         
     if (email && password) {
-        if (req.query.type == "bikers" || req.query.type == "buyer" || req.query.type == "admin") {
+        if (req.query.type == "biker" || req.query.type == "buyer" || req.query.type == "admin") {
             var item = getUser(map[req.query.type], email);
             item.next((err, doc) => {
                 if (err) res.send(err);
