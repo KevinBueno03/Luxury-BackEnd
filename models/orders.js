@@ -78,7 +78,8 @@ var orderSchema = new mongoose.Schema({
         type:mongoose.Schema.Types.Mixed
     },
     isOnLocation:{
-        type:Boolean
+        type:Boolean,
+		default:false
     },
 	
 })
