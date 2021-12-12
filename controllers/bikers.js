@@ -51,7 +51,8 @@ module.exports.update =  async (req, res) => {
               password:req.body.password,
               phone:req.body.phone,
               img:req.body.img,
-              accepted:req.body.accepted
+              accepted:req.body.accepted,
+              active:req.body.active
             },
         },
 
@@ -75,7 +76,7 @@ module.exports.update =  async (req, res) => {
 
 module.exports.findOneByToken = async (req, res) => {
     //const code = req.params.code;
-    const code = req.body.token;
+    const code = req.params.token;
 
     Biker.findOne({ token: code })
         .then((data) => {
@@ -105,8 +106,22 @@ module.exports.findAllActiveAndAccepted = async (req, res) => {
             });
         });
 };
+
 module.exports.findAllActive= async (req, res) => {
     Biker.find({ active: true })
+        .then((data) => {
+            res.send(data);
+        })
+        .catch((err) => {
+            res.status(500).send({
+                message:
+                    err.message ||
+                    "Some error occurred while retrieving Bikers.",
+            });
+        });
+};
+module.exports.findAll= async (req, res) => {
+    Biker.find()
         .then((data) => {
             res.send(data);
         })

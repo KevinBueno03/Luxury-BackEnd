@@ -109,6 +109,7 @@ module.exports.update = async (req, res) => {
 				taked: req.body.taked,
 				nameStatus: req.body.nameStatus,
 				location: req.body.location,
+				companyAddress: req.body.companyAddress
 			},
 		},
 		{ returnOriginal: false }

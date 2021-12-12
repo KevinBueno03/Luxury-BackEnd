@@ -20,10 +20,11 @@ router.get("/buyers/buyer/:token",ctrlBuyers.findOneByToken);
 
 //BIKERS
 router.post("/register-biker",ctrlBikers.register);
-router.get("/biker",ctrlBikers.findOneByToken);
-router.put("/biker/:idBiker",ctrlBikers.update);
-router.get("/biker/active-accepted",ctrlBikers.findAllActiveAndAccepted);
-router.get("/biker/active",ctrlBikers.findAllActive);
+router.get("/bikers/biker/:token",ctrlBikers.findOneByToken);
+router.get("/bikers",ctrlBikers.findAll);
+router.put("/bikers/biker/update/:idBiker",ctrlBikers.update);
+router.get("/bikers/active-accepted",ctrlBikers.findAllActiveAndAccepted);
+router.get("/bikers/active",ctrlBikers.findAllActive);
 
 //Category
 router.post("/category",ctrlCategory.register);
@@ -31,6 +32,7 @@ router.get("/categories",ctrlCategory.getCategories);//obtener todas las categor
 router.get("/category/:idCategory/companies",ctrlCategory.getCompanies);
 router.get("/category/:idCategory/companies-products",ctrlCategory.getCompaniesAndProducts);
 router.put("/category/:idCategory",ctrlCategory.update);
+
 //Company
 router.post("/company/category/:idCategory",ctrlCompany.register);
 router.get("/company/:idCompany/products",ctrlCompany.getProducts);

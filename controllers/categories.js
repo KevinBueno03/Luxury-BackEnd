@@ -9,6 +9,7 @@ module.exports.register = (req,res) => {
     if(item){
 
         item.name=req.body.name;
+        item.img = req.body.img;
         
     }
 
@@ -20,7 +21,7 @@ module.exports.register = (req,res) => {
         };
 
         if (!err) {
-            console.log(doc);
+            
             res.send(doc);
         } else {
             if (err) {

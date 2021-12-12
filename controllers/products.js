@@ -12,6 +12,7 @@ module.exports.register = async (req,res) => {
         item.name=req.body.name;
         item.description = req.body.description;
         item.price= req.body.price;
+        item.img=req.body.img
        
         
     }
@@ -49,6 +50,7 @@ module.exports.update = async (req, res) => {
               description:req.body.description,
               price:req.body.price,
               img:req.body.img,
+              active:req.body.active
               
             },
         },

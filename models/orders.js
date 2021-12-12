@@ -43,6 +43,9 @@ var orderSchema = new mongoose.Schema({
 	address: {
 		type: String,
 	},
+	companyAddres: {
+		type: String,
+	},
 	phone: {
 		type: String,
 		
@@ -63,6 +66,7 @@ var orderSchema = new mongoose.Schema({
 	},
 	nameStatus: {
 		type: String,
+		default:"Por Asignar"
 	},
 	buyerName: {
 		type: String,
