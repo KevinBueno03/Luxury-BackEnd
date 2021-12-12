@@ -77,6 +77,9 @@ var orderSchema = new mongoose.Schema({
     location:{
         type:mongoose.Schema.Types.Mixed
     },
+    isOnLocation:{
+        type:Boolean
+    },
 	
 })
 module.exports = mongoose.model('Order', orderSchema)

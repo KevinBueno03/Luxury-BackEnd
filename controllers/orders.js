@@ -124,6 +124,7 @@ module.exports.update = async (req, res) => {
 				location: req.body.location,
 				companyAddress: req.body.companyAddress,
 				companyName: req.body.companyName,
+				isOnLocation:req.body.companyName,
 			},
 		},
 		{ returnOriginal: false }
@@ -183,8 +184,20 @@ module.exports.findAllOrdersBuyer = async (req, res) => {
 		})
 }
 
+module.exports.findAllOrdersEntregadas = async (req, res) => {
+	Order.find({  idBuyer: req.params.idBuyer,isOnLocation:true })
+		.then((data) => {
+			res.send(data)
+		})
+		.catch((err) => {
+			res.status(500).send({
+				message: err.message || 'Some error occurred while retrieving Orders.',
+			})
+		})
+}
+
 module.exports.findAllOrdersBiker = async (req, res) => {
-	Order.find({ idBiker: req.params.idBiker })
+	Order.find({idBiker:req.params.idBiker})
 		.then((data) => {
 			res.send(data)
 		})

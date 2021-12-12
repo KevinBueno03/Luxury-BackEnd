@@ -55,6 +55,7 @@ router.get("/orders",ctrlOrder.getAllOrder);
 router.get("/orders/order/:idOrder",ctrlOrder.getOrderById);
 router.get("/orders/paid",ctrlOrder.getAllOrdersPaid);
 router.get("/orders/not-paid",ctrlOrder.getOrdersNotPaid);
+router.get("/orders/entregadas/idBuyer",ctrlOrder.findAllOrdersEntregadas);
 router.get("/orders/not-paid-not-taked",ctrlOrder.getAllOrdersPaidAndNotTaked);
 router.get("/orders/order/not-paid/buyer/:idBuyer",ctrlOrder.getOrderNotPaidBuyer);
 router.get("/orders/paid/buyer/:idBuyer",ctrlOrder.getOrdersPaidBuyer);
