@@ -46,6 +46,9 @@ var orderSchema = new mongoose.Schema({
 	companyAddress: {
 		type: String,
 	},
+	companyName: {
+		type: String,
+	},
 	phone: {
 		type: String,
 		
