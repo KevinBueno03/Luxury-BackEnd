@@ -185,7 +185,7 @@ module.exports.findAllOrdersBuyer = async (req, res) => {
 }
 
 module.exports.findAllOrdersEntregadas = async (req, res) => {
-	Order.find({  idBuyer: req.params.idBuyer,isOnLocation:true })
+	Order.find({  idBiker: req.params.idBuyer,isOnLocation:true })
 		.then((data) => {
 			res.send(data)
 		})
