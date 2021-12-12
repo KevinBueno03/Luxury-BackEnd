@@ -43,7 +43,7 @@ var orderSchema = new mongoose.Schema({
 	address: {
 		type: String,
 	},
-	companyAddres: {
+	companyAddress: {
 		type: String,
 	},
 	phone: {

@@ -56,6 +56,19 @@ module.exports.getAllOrdersPaid= async (req,res) => {
             });
         });
 };
+module.exports.getAllOrdersPaidAndNotTaked= async (req,res) => {
+    Order.find({paid:true,taked:false})
+        .then((data) => {
+            res.send(data);
+        })
+        .catch((err) => {
+            res.status(500).send({
+                message:
+                    err.message ||
+                    "Some error occurred while retrieving Order.",
+            });
+        });
+};
 
 module.exports.getOrdersNotPaid= async (req,res) => {
     Order.find({paid:false})

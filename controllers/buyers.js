@@ -25,6 +25,7 @@ module.exports.register = (req,res) => {
 
         if (!err) {
             console.log(doc);
+            
             res.send(doc);
         } else {
             if (err) {
